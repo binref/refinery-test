@@ -15,6 +15,7 @@ jobs:
       script: xvfb-run coverage run --source refinery run-tests.py
     - name: "Deploy To Test PyPi"
       python: 3.8
+      stage: deploy
       script: true
       deploy:
         server: https://test.pypi.org/
