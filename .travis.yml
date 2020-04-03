@@ -17,7 +17,9 @@ jobs:
     - name: "Deploy To Test PyPi"
       python: 3.8
       stage: deploy
-      script: true
+      script:
+        - git remote set-branches origin "*"
+        - git fetch origin master
       deploy:
         server: https://test.pypi.org/legacy/
         provider: pypi
