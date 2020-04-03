@@ -17,7 +17,7 @@ jobs:
     - name: "Deploy To Test PyPi"
       python: 3.8
       stage: deploy
-      script: git fetch origin master
+      script: true
       deploy:
         server: https://test.pypi.org/legacy/
         provider: pypi
@@ -27,4 +27,4 @@ jobs:
         skip_existing: true
         on:
           branch: backend
-          condition: $(git describe --exact-match --tags master || echo UNREFINED) != "UNREFINED"
+          condition: $(git describe --exact-match --tags origin/master || echo UNREFINED) != "UNREFINED"
