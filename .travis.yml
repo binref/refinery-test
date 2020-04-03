@@ -18,8 +18,8 @@ jobs:
       python: 3.8
       stage: deploy
       script:
-        - git remote set-branches origin "*"
-        - git fetch origin master
+        - git remote set-branches origin '*'
+        - git fetch origin master --tags
       deploy:
         server: https://test.pypi.org/legacy/
         provider: pypi
