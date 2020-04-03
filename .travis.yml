@@ -25,4 +25,5 @@ jobs:
         distributions: "sdist bdist_wheel"
         skip_existing: true
         on:
-          tags: true
+          branch: backend
+          condition: $(git describe --exact-match --tags master || echo UNREFINED) != "UNREFINED"

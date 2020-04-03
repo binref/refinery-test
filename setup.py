@@ -8,7 +8,6 @@ import sys
 
 import refinery.lib.loader as loader
 
-PREFIX = os.getenv('REFINERY_PREFIX') or ''
 GITHUB = 'https://github.com/binref/refinery/'
 
 cache_path = os.path.join(os.path.dirname(__file__), 'refinery', '__init__.pkl')
@@ -39,7 +38,7 @@ def main():
         readme = re.sub('(?<=\\])\\((?!\\w+://)(.*?)\\)', F'({GITHUB}blob/master/\\1)', readme)
 
     setuptools.setup(
-        name='binary-refinery',
+        name='binary-refinery-backend',
         version='0.1.5',
         author='Jesko Hüttenhain',
         description='A toolkit to transform and refine (mostly) binary data.',
@@ -59,19 +58,6 @@ def main():
             exclude=('test*',)
         ),
         install_requires=requirements,
-        entry_points={
-            'console_scripts': [
-                '{}{}={}:{}.run'.format(
-                    PREFIX,
-                    normalize_name(item.__qualname__),
-                    item.__module__,
-                    item.__qualname__
-                )
-                for item in loader.get_all_entry_points()
-            ] + [
-                'binre=refinery.explore:explorer'
-            ]
-        }
     )
 
 
